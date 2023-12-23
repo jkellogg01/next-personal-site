@@ -3,8 +3,6 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import Link from "next/link";
-import { useState } from "react";
 
 export const metadata: Metadata = {
   title: "Joshua Kellogg",
