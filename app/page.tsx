@@ -23,7 +23,7 @@ export default function Index() {
   ];
 
   return (
-    <div className="flex flex-col gap-4 max-w-prose">
+    <div className="flex flex-col gap-4 sm:w-full max-w-prose">
       <div className="bg-slate-800 p-4 rounded-xl">
         <h2 className="text-2xl text-amber-200 font-semibold">Profile</h2>
         <p>
