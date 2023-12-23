@@ -38,7 +38,7 @@ export default function Nav() {
           <Link
             key={index}
             className="block p-2 hover:bg-slate-700 hover:text-amber-200 rounded-lg transition-colors duration-200"
-            href={url ? url : "/not-found"}
+            href={url ? url : "/under-construction"}
           >
             {name}
           </Link>

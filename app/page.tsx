@@ -1,4 +1,27 @@
+import Link from "next/link";
+
+type NavCard = {
+  name: string;
+  url?: string;
+  desc: string;
+};
+
 export default function Index() {
+  const navCards: NavCard[] = [
+    {
+      name: "Projects",
+      desc: "Some of the projects I've worked on recently",
+    },
+    {
+      name: "Essays",
+      desc: "Assorted thoughts. Like a blog without the implication of regular maintenance.",
+    },
+    {
+      name: "Contact",
+      desc: "Interested in working together on your next project? Reach out!",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-4 max-w-prose">
       <div className="bg-slate-800 p-4 rounded-xl">
@@ -17,7 +40,7 @@ export default function Index() {
             target="_blank"
           >
             Next.js
-          </a>
+          </a>{" "}
           to build my personal site (the one you're looking at now), as well as
           working through{" "}
           <a
@@ -29,6 +52,21 @@ export default function Index() {
           </a>
           , which has been a really fun and interesting experience.
         </p>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        {navCards.map(({ name, url, desc }, index) => (
+          <Link
+            key={index}
+            className="bg-slate-800 p-4 rounded-xl hover:bg-slate-700 transition-colors duration-200"
+            href={url ? url : "/under-construction"}
+          >
+            <h2 className="text-amber-200 text-xl font-semibold">
+              {name}
+              {" ->"}
+            </h2>
+            <p>{desc}</p>
+          </Link>
+        ))}
       </div>
     </div>
   );
