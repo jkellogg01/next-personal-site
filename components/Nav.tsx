@@ -15,6 +15,7 @@ export default function Nav() {
   const navItems: NavItem[] = [
     {
       name: "Projects",
+      url: "/projects",
     },
     {
       name: "Essays",

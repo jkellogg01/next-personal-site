@@ -10,6 +10,7 @@ export default function Index() {
   const navCards: NavCard[] = [
     {
       name: "Projects",
+      url: "/projects",
       desc: "Some of the projects I've worked on recently",
     },
     {

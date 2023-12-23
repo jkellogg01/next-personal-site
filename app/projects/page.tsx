@@ -11,56 +11,35 @@ type ShowProject = {
 export default function Projects() {
   const projects: ShowProject[] = [
     {
-      title: "Example Project",
+      title: "Sunny",
+      desc: "A CLI-based weather API client",
       links: [
         {
           name: "Repo",
-          url: "#",
+          url: "https://github.com/jkellogg01/sunny",
         },
       ],
-      desc: "This is an example project card",
     },
     {
-      title: "Example Project",
+      title: "Snif",
+      desc: "A full-stack dating app for dogs & dog owners.",
       links: [
         {
           name: "Repo",
-          url: "#",
+          url: "https://github.com/nlad218/dog-dating-app",
         },
-      ],
-      desc: "This is an example project card",
-    },
-    {
-      title: "Example Project",
-      links: [
         {
-          name: "Repo",
-          url: "#",
+          name: "Deployed",
+          url: "https://stormy-mesa-49272-df30e734d644.herokuapp.com/",
         },
       ],
-      desc: "This is an example project card",
     },
-    {
-      title: "Example Project",
-      links: [
-        {
-          name: "Repo",
-          url: "#",
-        },
-      ],
-      desc: "This is an example project card",
-    },
-  ]
+  ];
 
   return (
-    <div className="grid grid-cols-2 sm:w-full max-w-prose gap-4">
+    <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:justify-start sm:grid sm:grid-cols-2 max-sm:w-full max-w-prose gap-4">
       {projects.map(({ title, links, desc, img }, index) => (
-        <ProjectCard
-          key={index}
-          title={title}
-          links={links}
-          image={img}
-        >
+        <ProjectCard key={index} title={title} links={links} image={img}>
           {desc}
         </ProjectCard>
       ))}
