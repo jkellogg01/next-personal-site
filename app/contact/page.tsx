@@ -2,6 +2,92 @@
 
 import { ChangeEvent, useState } from "react";
 
+export default function Contact() {
+  return (
+    <div className="flex flex-col gap-4 sm:max-w-lg">
+      <div className="bg-slate-800 p-4 rounded-xl max-sm:w-full">
+        <h2 className="text-2xl text-amber-200 font-semibold">Hey There!</h2>
+        <p>
+          Whether it's a personal website, a portfolio, or a web store for your
+          business, I'm excited to help bring your next web design project to
+          life!
+        </p>
+      </div>
+      <ContactForm />
+    </div>
+  );
+}
+
+function ContactForm() {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const widthSmall = window.matchMedia(`(max-width: 640px)`).matches;
+
+  function handleFormSubmit(data: FormData) {
+    fetch("/api/send", {
+      method: "POST",
+      body: data,
+    }).then((res) => {
+      console.log(res);
+    });
+  }
+
+  return (
+    <form
+      action={handleFormSubmit}
+      className="p-4 bg-slate-800 rounded-xl max-sm:w-full flex flex-col gap-2"
+    >
+      <div className="flex flex-row gap-2 max-sm:w-full">
+        <TextInput
+          name="firstname"
+          placeholder={!widthSmall ? "firstname: string" : "first: string"}
+          getter={firstname}
+          setter={setFirstname}
+          validation={/.+/}
+        />
+        <TextInput
+          name="lastname"
+          placeholder={!widthSmall ? "lastname: string" : "last: string"}
+          getter={lastname}
+          setter={setLastname}
+        />
+      </div>
+      <TextInput
+        name="company"
+        placeholder="company: string | undefined"
+        getter={company}
+        setter={setCompany}
+      />
+      <TextInput
+        name="email"
+        placeholder="email: string"
+        getter={email}
+        setter={setEmail}
+        validation={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/}
+      />
+      <textarea
+        name="message"
+        cols={30}
+        rows={10}
+        className="bg-slate-900 focus-visible:outline-amber-200 resize-none p-2 placeholder:font-mono rounded-lg"
+        placeholder="message: string | undefined"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      ></textarea>
+      <button
+        className="bg-amber-200 text-slate-900 p-2 rounded-lg"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+
 function TextInput({
   name,
   id,
@@ -15,7 +101,7 @@ function TextInput({
   placeholder?: string;
   getter: string;
   setter: (x: string) => any;
-  validation?: (x: string) => boolean;
+  validation?: RegExp;
 }) {
   const [valid, setValid] = useState(true);
 
@@ -32,7 +118,7 @@ function TextInput({
     if (validation === undefined) {
       return true;
     }
-    return validation(input);
+    return validation.test(input);
   }
 
   return (
@@ -49,68 +135,5 @@ function TextInput({
           : "bg-red-900 p-2 focus-visible:outline-slate-700 w-full rounded-lg"
       }
     />
-  );
-}
-
-export default function Contact() {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  return (
-    <div className="flex flex-col gap-4 max-w-prose">
-      <div className="bg-slate-800 p-4 rounded-xl max-sm:w-full">
-        This will be a blurb about how excited i am to hear from you
-      </div>
-      <form
-        method="POST"
-        action=""
-        className="p-4 bg-slate-800 rounded-xl max-sm:w-full flex flex-col gap-2"
-      >
-        <div className="flex flex-row gap-2 max-sm:w-full">
-          <TextInput
-            name="firstname"
-            placeholder="firstname: string"
-            getter={firstname}
-            setter={setFirstname}
-          />
-          <TextInput
-            name="lastname"
-            placeholder="lastname: string"
-            getter={lastname}
-            setter={setLastname}
-          />
-        </div>
-        <TextInput
-          name="company"
-          placeholder="company: string | undefined"
-          getter={company}
-          setter={setCompany}
-        />
-        <TextInput
-          name="email"
-          placeholder="email: string"
-          getter={email}
-          setter={setEmail}
-        />
-        <textarea
-          name="message"
-          cols={30}
-          rows={10}
-          className="bg-slate-900 focus-visible:outline-amber-200 resize-none p-2 placeholder:font-mono rounded-lg"
-          placeholder="message: string"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
-        <button
-          className="bg-amber-200 text-slate-900 p-2 rounded-lg"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
   );
 }

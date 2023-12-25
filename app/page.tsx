@@ -19,6 +19,7 @@ export default function Index() {
     },
     {
       name: "Contact",
+      url: "/contact",
       desc: "Interested in working together on your next project? Reach out!",
     },
   ];
