@@ -25,7 +25,7 @@ function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const widthSmall = window.matchMedia(`(max-width: 640px)`).matches;
+  // const widthSmall = window.matchMedia(`(max-width: 640px)`).matches;
 
   function handleFormSubmit(data: FormData) {
     fetch("/api/send", {
@@ -44,14 +44,14 @@ function ContactForm() {
       <div className="flex flex-row gap-2 max-sm:w-full">
         <TextInput
           name="firstname"
-          placeholder={!widthSmall ? "firstname: string" : "first: string"}
+          placeholder="first: string"
           getter={firstname}
           setter={setFirstname}
           validation={/.+/}
         />
         <TextInput
           name="lastname"
-          placeholder={!widthSmall ? "lastname: string" : "last: string"}
+          placeholder="last: string"
           getter={lastname}
           setter={setLastname}
         />
