@@ -21,6 +21,7 @@ export default function Nav() {
     },
     {
       name: "Contact",
+      url: "/contact",
     },
   ];
 
