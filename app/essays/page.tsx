@@ -45,7 +45,7 @@ async function EssayCard({ essay }: { essay: essay }) {
 	);
 }
 
-export async function Excerpt({ path }: { path: PathLike }) {
+async function Excerpt({ path }: { path: PathLike }) {
 	const words = (await readFile(path, "utf-8")).slice(0, 255).split(/\n| /);
 
 	const fileText: string = words.reduce((acc, word) => {
