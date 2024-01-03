@@ -29,7 +29,7 @@ export default function Nav() {
 	const [drawer, setDrawer] = useState(false);
 
 	return (
-		<div className="sticky top-0">
+		<>
 			<div className="bg-slate-800 p-2 rounded-xl sm:text-end flex flex-row justify-between">
 				<Link
 					className="hover:bg-slate-700 p-2 rounded-lg transition-colors duration-200"
@@ -66,7 +66,7 @@ export default function Nav() {
 					return pathname === url ? (
 						<div
 							key={index}
-							className="p-2 bg-slate-900 text-amber-300 underline rounded-lg"
+							className="p-2 bg-slate-900 text-amber-300 underline rounded-lg cursor-default"
 						>
 							{name}
 						</div>
@@ -90,6 +90,6 @@ export default function Nav() {
 				}
 				onClick={() => setDrawer(false)}
 			></div>
-		</div>
+		</>
 	);
 }
