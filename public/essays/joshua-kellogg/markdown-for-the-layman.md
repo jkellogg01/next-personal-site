@@ -1,3 +1,2 @@
-# This is an essay called markdown for the layman
-
-it will contain details about why markdown might be a useful thing for school students to learn at an early age
+In Markdown for the Layman, we will be discussing why people in non-technical roles might benefit from adapting to the use of the Markdown format for their everyday communications.
+Tools such as word processors could also start using markdown under the hood, allowing non-technical individuals to do their word processing the same way they used to, before exporting to markdown's significantly more portable plain-text format.
