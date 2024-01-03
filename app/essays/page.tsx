@@ -1,14 +1,8 @@
 import { PathLike } from "fs";
-import { readdir, readFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import Link from "next/link";
 import WIP from "../under-construction/page";
-
-type essay = {
-	id: number;
-	title: string;
-	author: string;
-	path: PathLike;
-};
+import { getEssays, essay } from "./utils";
 
 export default async function Essays() {
 	const essayPath = "public/essays";
@@ -49,44 +43,6 @@ async function EssayCard({ essay }: { essay: essay }) {
 			</div>
 		</Link>
 	);
-}
-
-export async function getEssays(path: PathLike) {
-	try {
-		const files = await readdir(path, {
-			recursive: true,
-		});
-
-		const isEssay = /^(\w+[-\w+]*)\/(\w+[-\w+]*)\.md/;
-		const essays: essay[] = files
-			.filter((file) => {
-				return isEssay.test(file);
-			})
-			.map((file, index) => {
-				const fields = isEssay
-					.exec(file)!
-					.slice(1)
-					.map((field) => {
-						return field
-							.split("-")
-							.map((word) => {
-								return word.charAt(0).toUpperCase() + word.slice(1);
-							})
-							.join(" ");
-					});
-
-				return {
-					id: index,
-					title: fields[1],
-					author: fields[0],
-					path: path + "/" + file,
-				};
-			});
-
-		return essays;
-	} catch (err) {
-		console.warn(err);
-	}
 }
 
 export async function Excerpt({ path }: { path: PathLike }) {

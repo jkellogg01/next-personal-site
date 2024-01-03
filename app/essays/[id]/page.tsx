@@ -1,5 +1,5 @@
 import NotFound from "@/app/not-found";
-import { getEssays } from "../page";
+import { getEssays } from "../utils";
 
 export default async function SingleEssay({
 	params,
