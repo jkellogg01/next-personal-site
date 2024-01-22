@@ -1,7 +1,6 @@
 import { PathLike } from "fs";
 import { readFile } from "fs/promises";
 import Link from "next/link";
-import WIP from "../under-construction/page";
 import { getEssays, essay } from "./utils";
 
 export default async function Essays() {
@@ -16,7 +15,16 @@ export default async function Essays() {
 		return "oops.";
 	}
 
-	if (essays.length === 0) return <WIP />;
+	if (essays.length === 0)
+		return (
+			<div className="max-w-prose bg-slate-800 p-4 rounded-xl max-sm:w-full">
+				<h3 className="text-2xl font-bold text-amber-200">Nothing yet...</h3>
+				<p>
+					Listen, man. This essay writing stuff is hard work. Check back another
+					time, maybe I'll have some goodies for you. Kapisce?
+				</p>
+			</div>
+		);
 
 	return (
 		<div className="max-w-prose">
